@@ -24,6 +24,14 @@ public class Exercicio01 {
         // Saída
         System.out.println(" A média é " + media);
 
+        if(media >= 7) {
+            System.out.println("Parabéns! você foi aprovado");
+        } else {
+            System.out.println("Reprovado. Tente novamente.");
+        }
+
+        System.out.println("Final do programa");
+
         teclado.close();
     }
 }
