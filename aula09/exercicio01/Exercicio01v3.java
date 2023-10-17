@@ -29,7 +29,7 @@ public class Exercicio01v3 {
 
             if (opcaoMenu >= 'a' && opcaoMenu < 'f') {
 
-                int indice = opcaoMenu - 'a';
+                int indice = opcaoMenu - 'a'; // utiliza valor da tabela ASCII
 
                 if (opcional[indice]) {
                     System.out.println("Item já escolhido");
@@ -38,18 +38,18 @@ public class Exercicio01v3 {
                     opcional[indice] = true;
                 }
             } else {
-                if(opcaoMenu != 'f'){
+                if (opcaoMenu != 'f') {
                     System.out.println("Opção inválida");
                 }
             }
         } while (opcaoMenu != 'f');
 
         precoFinal = precoFabrica * 1.03;
-        System.out.println("Preço final: " + precoFinal);
+        System.out.println("Preço final: R$ " + precoFinal);
         System.out.println("Itens inclusos:");
         for (int i = 0; i < opcional.length; i++) {
             if (opcional[i] == true) {
-                System.out.println(nomeItem[i]);
+                System.out.println("- " + nomeItem[i]);
             }
         }
 
