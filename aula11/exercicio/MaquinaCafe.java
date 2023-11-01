@@ -1,28 +1,27 @@
 package exercicio;
 
 public class MaquinaCafe {
-    private int capsulas;
+    private int reservatorioCapsulas;
     private int agua;
 
     public MaquinaCafe() {
 
     }
 
-    public MaquinaCafe(int capsulas, int agua) {
-        this.capsulas = capsulas;
+    public MaquinaCafe(int agua) {
         this.agua = agua;
     }
 
-    public void abastercerAgua(int agua) {
+    public void abastecerAgua(int agua) {
 
     }
 
-    public void abastercerCapsulas(int capsulas) {
+    public void esvaziarReservatorio() {
 
     }
 
     public void fazerCafePequeno() {
-        
+
     }
 
     public void fazerCafeMedio() {
@@ -32,5 +31,5 @@ public class MaquinaCafe {
     public void fazerCafeGrande() {
 
     }
-    
+
 }
