@@ -7,6 +7,7 @@ package br.anhembi.projetoagencia;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -51,8 +52,18 @@ public class FormPrincipal extends javax.swing.JFrame {
         jLabel2.setText("Email");
 
         btnCadastrar.setText("Cadastrar");
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout formCadastroLayout = new javax.swing.GroupLayout(formCadastro.getContentPane());
         formCadastro.getContentPane().setLayout(formCadastroLayout);
@@ -152,6 +163,31 @@ public class FormPrincipal extends javax.swing.JFrame {
         }
         formCadastro.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+        String nome = txtNome.getText();
+        String email = txtEmail.getText();
+        
+        Usuario usuario = new Usuario(nome, email);
+        
+        boolean resultado = UsuarioDAO.inserir(usuario);
+        if(resultado) {
+            JOptionPane.showMessageDialog(this, "Cadastrado com sucesso!");
+        } else {
+            JOptionPane.showMessageDialog(this, "Falha no Cadastrado!");
+        }
+        
+        txtNome.setText("");
+        txtEmail.setText("");
+
+        formCadastro.setVisible(false);
+        container.remove(formCadastro);
+    }//GEN-LAST:event_btnCadastrarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        formCadastro.setVisible(false);
+        container.remove(formCadastro);
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
      * @param args the command line arguments
