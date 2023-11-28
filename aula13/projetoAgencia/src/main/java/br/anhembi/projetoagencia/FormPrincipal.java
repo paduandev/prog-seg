@@ -38,10 +38,16 @@ public class FormPrincipal extends javax.swing.JFrame {
         txtEmail = new javax.swing.JTextField();
         btnCadastrar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        formApagar = new javax.swing.JInternalFrame();
+        jLabel3 = new javax.swing.JLabel();
+        txtID = new javax.swing.JTextField();
+        btnApagar = new javax.swing.JButton();
+        btnCancelarApagar = new javax.swing.JButton();
         container = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         formCadastro.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
@@ -105,6 +111,54 @@ public class FormPrincipal extends javax.swing.JFrame {
                 .addContainerGap(113, Short.MAX_VALUE))
         );
 
+        formApagar.setVisible(true);
+
+        jLabel3.setText("ID");
+
+        btnApagar.setText("Apagar");
+        btnApagar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnApagarActionPerformed(evt);
+            }
+        });
+
+        btnCancelarApagar.setText("Cancelar");
+        btnCancelarApagar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarApagarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout formApagarLayout = new javax.swing.GroupLayout(formApagar.getContentPane());
+        formApagar.getContentPane().setLayout(formApagarLayout);
+        formApagarLayout.setHorizontalGroup(
+            formApagarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(formApagarLayout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(formApagarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(formApagarLayout.createSequentialGroup()
+                        .addComponent(btnApagar)
+                        .addGap(34, 34, 34)
+                        .addComponent(btnCancelarApagar))
+                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(255, Short.MAX_VALUE))
+        );
+        formApagarLayout.setVerticalGroup(
+            formApagarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(formApagarLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(formApagarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(49, 49, 49)
+                .addGroup(formApagarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnApagar)
+                    .addComponent(btnCancelarApagar))
+                .addContainerGap(120, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Agência 1.0");
 
@@ -128,6 +182,14 @@ public class FormPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItem1);
+
+        jMenuItem2.setText("Apagar");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
 
         jMenuBar1.add(jMenu1);
 
@@ -189,6 +251,40 @@ public class FormPrincipal extends javax.swing.JFrame {
         container.remove(formCadastro);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    private void btnCancelarApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarApagarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCancelarApagarActionPerformed
+
+    private void btnApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApagarActionPerformed
+        int id = Integer.parseInt(txtID.getText());
+        
+        boolean resultado =  UsuarioDAO.apagar(id);
+        
+        if(resultado) {
+            JOptionPane.showMessageDialog(this, "Apagado com sucesso!");
+        } else {
+            JOptionPane.showMessageDialog(this, "Falha ao Apagar!");
+        }
+        
+        txtID.setText("");
+        
+        formApagar.setVisible(false);
+        container.remove(formApagar);
+    }//GEN-LAST:event_btnApagarActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        if(container.getComponentCount()> 0){
+            return;
+        }
+        container.add(formApagar);
+        try {
+            formApagar.setMaximum(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(FormPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        formApagar.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -225,17 +321,23 @@ public class FormPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnApagar;
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnCancelarApagar;
     private javax.swing.JDesktopPane container;
+    private javax.swing.JInternalFrame formApagar;
     private javax.swing.JInternalFrame formCadastro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
 }

@@ -32,4 +32,20 @@ public class UsuarioDAO {
         } 
     }
       
+    public static boolean apagar(int id) {
+        String sql = "delete from usuarios where id = ?;";
+        // esse try fecha automaticamente as conexões
+        try(
+            Connection connection = DriverManager.getConnection(
+                    BD_URL, BD_USER, BD_PASSWORD);
+            PreparedStatement statement = connection.prepareStatement(sql); 
+        ){
+            statement.setInt(1, id);
+            int registros = statement.executeUpdate();
+            return (registros > 0);
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+            return false;
+        } 
+    }
 }
